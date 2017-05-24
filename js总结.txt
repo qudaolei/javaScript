@@ -1,0 +1,278 @@
+1. 函数
+	函数会把多个语句放在一个块中
+	执行这些语句，调用函数
+	作用：复用代码
+	定义函数：
+		function [函数名](){
+
+		}
+		箭头函数
+			() => {}
+
+	函数声明
+		function 函数名(){
+
+		}
+	函数表达式	
+		var 变量名 = function [函数名](){}	
+			函数作为表达式，函数名只能在函数内部使用	
+		var 变量名 = () => {}
+
+	调用函数
+		函数名()
+
+	传参
+		实参 调用时候传入的实际参数
+		形参 定义的时候写在()中参数，用来接收实参，只能在函数使用
+	返回值
+		默认是 undefined
+		retrun 返回值
+
+	在函数内部内置定义的变量
+		this       
+		arguments  实参的集合 类数组
+		return     用来返回函数调用后的结构 
+			return之后的代码不再执行了
+	this的值
+		1. 使用function定义 this的值是在调用该函数时候确定的
+			a. 直接调用 
+				非严格模式：this => window
+				严格模式：  this => undefined
+			b. 某对象调用
+				this => 某对象
+			c. 事件调用
+				this => 触发该事件的元素
+			d. 定时器调用
+				this => window
+			e. call和apply
+				this => call或apply的第一个参数
+				非严格模式：第一个参数为null this => window
+				严格模式：  第一个参数为null this => null
+			f. new 调用函数
+				this => 通过函数创建的实例对象
+
+		2. 箭头函数 定义的时候this就绑定了函数所在的上下文对象
+
+	作用域
+		变量的使用的范围
+		1. 全局作用域
+			任何一个地方都可以访问到变量
+		2. 局部作用域
+			只能在定义变量范围使用
+			使用函数划分作用域
+	作用域链
+		当查找一个变量，会沿着作用域链找变量
+
+		JavaScript的作用域指的是变量的作用范围，内部作用域由函数的形参，实参，局部变量，函数构成，内部作用域和外部的作用域一层层的链接起来形成作用域链，当在在函数内部要访问一个变量的时候，首先查找自己的内部作用域有没有这个变量，就到该作用域所在的作用域中找，直到到window所在的作用域，每个函数在声明的时候就默认有一个外部作用域的存在了。
+
+2. 数组
+	构造函数 Array
+	字面量 []
+
+	属性
+		length
+	原型上的方法
+		join()
+		splice
+		push
+		pop
+		shift
+		unshift
+		slice
+		sort
+		concat
+		indexOf
+		reverse
+		map
+		filter
+		forEach
+		reduce
+		fill
+		finde
+		findIndex
+	构造函数的静态方法
+		isArray
+		from
+		of
+
+3. for if switch while
+
+4. Math对象
+	方法
+		floor
+		ceil
+		round
+		abs
+		max
+		min
+		random()
+5. Date
+
+6. 定时器
+	连续型定时器  setInterval()
+	延迟型定时器  setTimeout()
+
+	停止 clearInterval() clearTimeout()
+
+7. JSON数据
+	'{"a":"a"}'
+	'[1,2,3,4]'
+
+	把JSON字符串转成可操作的对象 
+		JSON.parse()
+	可操作的对象转成JSON字符串
+		JSON.stringify()
+
+8. DOM
+	文档对象模型
+	对文档中的元素进行增删改查
+	节点的类型 nodeType
+		文本类型 
+		注释类型
+		文档类型
+		元素类型  1
+	节点的关系
+		父子关系
+		兄弟关系
+		祖先关系
+		子孙关系
+
+	获取节点
+		getElementById
+		getElementsByTagName
+鐪版本   		querySelector
+		querySelectorAll
+		children
+		chilNodes
+		parentNode
+		firstChild/firstElementChild
+		lastChild/lastElementChild
+		nextSibling/nextElementSibling
+		previousSibling/previousElementSibling
+	创建节点
+		createElement
+	替换节点
+		replaceChild
+	插入节点
+		appendChild
+		insertBefore
+	克隆节点
+		cloneNode
+	删除节点
+		removeChild
+
+9. 事件
+	交互的一瞬间
+	事件绑定
+		1. on+事件名
+		元素.onclick = function(){}
+		2. addEventListener
+		元素.addEventListener(事件名,事件处理函数)
+		元素.addEventListener(事件名,事件处理函数)
+	事件流
+		事件流描述了页面中接收事件的顺序。
+		三个阶段
+			1. 捕获阶段
+			2. 目标阶段
+			3. 冒泡阶段
+
+	事件对象
+		记录了事件触发的信息
+		target
+		clinetX
+		clientY
+		preventDefault 阻止默认行为
+		stopPropagation 阻止冒泡
+	事件委托
+		利用了事件中冒泡的特性，可以把多个元素的事件统一的绑定在某个祖先节点上
+10. BOM
+	navigator.userAgent  浏览器信息
+	close()
+	open()
+	lcation
+		serach
+		hash
+		href
+
+11 正则
+	\d
+	\D
+	\s
+	\S
+	\b
+	\B
+	\w
+	\W
+	\1\2\3\4
+	^
+	&
+	[^]
+	{}
+	+
+	*
+	?
+	.
+	g
+	i
+	test()
+
+11. 面向对象
+	编程思想，写出可维护可复用代码
+
+	1. 类
+	2. 对象
+
+	es5中是用函数模拟类
+		function fn(){
+				
+		}
+
+		new fn()
+
+		通过构造函数创建出来的对象都共享一些方法或属性
+		放在原型上 函数上prototype属性
+
+	es6中有类
+		class Fn {
+
+		}
+		new Fn()
+
+		共享的方法，在定义的时候写在{}中
+
+11. ajax
+	作用：请求数据
+	工作流程：
+		1. 初始化ajax对象
+		2. 连接地址，准备数据
+		3. 发送数据
+		4. 返回数据（数据没返回完成）
+		5. 数据返回完毕
+	异步同步
+	get和post
+	跨域
+		后端设置允许跨域访问
+		代理
+		jsonp
+			动态创建script标签
+			用src引入资源
+			放在body中，使用js规则解析资源内容
+			在内容中写函数调用，调用的是预先写好的全局函数
+			通过这种函数调用，得到数据
+
+
+你有哪些性能优化的方法？
+（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。
+（2） 前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+（4） 当需要设置的样式很多时设置className而不是直接操作style。
+（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。ie6,7,8 认filter
+（7） 图片预加载，将样式表放在顶部，将脚本放在底部  加上时间戳。
+
+
+css tree
+Dom tree
+
+内存泄漏
+    不再用到的内存，没有及时释放，
+    浏览器不能正常的回收内存的现象
