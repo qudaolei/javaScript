@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [3, 2, 4, 5, 1];  // [1, 2, 3, 4, 5];
+    
+    /*function bubbleSort(arr){
+      console.time();
+      for(var i=0; i<arr.length; i++){
+        for(var j=0; j<arr.length - 1 - i; j++){
+          if(arr[j] > arr[j+1]){
+            [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+          }
+        }
+      }
+      console.timeEnd();
+    }
+    
+    bubbleSort(arr);
+    
+    console.log(arr);*/
+    
+    /**
+     * 1 从一堆数字中随机选出一个基点
+     * 2 将剩下的所有的数字和这个基点进行比较，如果比这个基点小，
+     *   就放到这个基点的左侧，如果比这个基点大就放到基点的右侧
+     * 3 对排到基点左侧和右侧的数字重复上面的1 、2 两个步骤，直到
+     *   排序完成(只剩下最后一个元素的时候)。
+     */
+    
+    /**
+     * [3, 2, 4, 5, 1]
+     *
+     *  第一次
+     * 1 ： 4 作为基点   [3, 2, 5, 1]
+     * 2 : [3, 2, 1]       [4]       [5]
+     *
+     * 第二次
+     * 1 ： 2作为基点  [3, 1];
+     * 2 ： [1]     [2]   [3]
+     *
+     * 排序完成之后：
+     * [1]     [2]   [3] [4]  [5]
+     * 通过 数组的  concat 方法连接起来
+     */
+    
+    /**
+     * Math 是JS中自带的工具对象，它里面包含了很多数学方法
+     * Math.random()  : 返回 [0,1)之间的随机数
+     * Math.round() : 四舍五入
+     * Math.PI : 数学中的圆周率
+     * Math.sin(rad): 三角函数的 正弦函数(参数是个弧度)
+     * Math.max(num1, num2...) : 用来求最大值
+     * Math.min(num1, num2...) :用来求最小值
+     * //------------------------------------
+     * Math.floor(num): 向下取整
+     * Math.ceil(num): 向上取整
+     */
+    
+    //var arr = [3,1,4,6,5,8,7,2];
+    
+    var n = 0;
+     
+     function quickSort(arr){
+       if(arr.length <= 1){
+         return arr;
+       }
+       // 取到一个基点的索引值，一般取数组中间的那个
+       // var basePointIndex = Math.floor(Math.random() * arr.length);
+       var basePointIndex = Math.floor((arr.length - 1)/2);
+       // 拿到对应的基点
+       var basePoint = arr.splice(basePointIndex, 1)[0];
+       // 分别用来存放左侧和右侧与基点比较后的数字
+       var left = [], right = [];
+       // 如果说arr的length不为0就一直循环去比较每一项
+       while(arr.length){
+         if(arr[0] < basePoint){
+           left.push(arr.shift());
+         }else{
+           right.push(arr.shift());
+         }
+       }
+       /*console.log(left);
+       console.log(right);*/
+       n++;
+       return quickSort(left).concat([basePoint], quickSort(right));
+     }
+     
+    var reslt = quickSort(arr);
+     console.log(reslt);
+     
+  </script>
+</body>
+</html>
